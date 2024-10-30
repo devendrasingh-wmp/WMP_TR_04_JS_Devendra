@@ -13,9 +13,13 @@ function RemoveDuplicate(arr){
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     const str = form.elements[0].value;
-    console.log(str)
-    const res = str.split(',');
-    console.log(res)
-    const ans = RemoveDuplicate(res);
-    output.innerHTML = `<h1>[ ${ans} ]</h1>`
+    try {
+        const arr = JSON.parse(str);  // input as json
+        if (!Array.isArray(arr)) throw new Error("Input is not an array");
+        const ans = RemoveDuplicate(arr);
+        console.log(ans);
+        output.innerHTML = `<h1>[ ${ans} ]</h1>`
+    } catch (error) {
+        result.textContent = "Invalid array input. Please enter a valid JSON array format.";
+    }
 })

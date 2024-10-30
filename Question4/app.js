@@ -11,8 +11,13 @@ function fun(obj){
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     let str = form.elements[0].value;
-    let object = JSON.parse(str) // convert in object
-    let res = fun(object);
-    result.innerHTML = `<h2> Lenght of Object is : ${res} </h2>`         // show on the web page
+    try {
+        let object = JSON.parse(str) // convert in object
+        let res = fun(object);
+        result.innerHTML = `<h2> Lenght of Object is : ${res} </h2>`         // show on the web page
+    } catch (error) {
+        result.textContent = `Invalid object input. Please enter a valid JSON object format.`;
+    }
+
 })
 
